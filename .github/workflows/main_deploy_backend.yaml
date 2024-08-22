@@ -1,0 +1,38 @@
+name: Deploy Backend
+
+on:
+  push:
+    branches:
+      - feature/nishioka/deploy # ここをデプロイしたいブランチに変更できます
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: チェックアウトコード
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11" # 使用するPythonのバージョン
+
+      - name: Install dependencies
+        run: |
+          cd backend  # FastAPIのディレクトリに移動
+          pip install -r requirements.txt  # 依存パッケージをインストール
+
+      - name: Set environment variables
+        run: |
+          echo "AZURE_MY_SERVER=${{ secrets.AZURE_MY_SERVER }}" >> $GITHUB_ENV
+          echo "AZURE_MY_ADMIN=${{ secrets.AZURE_MY_ADMIN }}" >> $GITHUB_ENV
+          echo "AZURE_MY_PASSWORD=${{ secrets.AZURE_MY_PASSWORD }}" >> $GITHUB_ENV
+          echo "AZURE_MY_DATABASE=${{ secrets.AZURE_MY_DATABASE }}" >> $GITHUB_ENV
+
+      - name: Deploy to Azure
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: tech0-gen-6-step4-studentwebapp-9 # ここにApp Service名を指定
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_BACKEND }} # GitHubシークレットから公開プロファイルを参照
+          package: ./backend # デプロイするディレクトリ
