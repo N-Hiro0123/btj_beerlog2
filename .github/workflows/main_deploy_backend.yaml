@@ -3,7 +3,7 @@ name: Deploy Backend
 on:
   push:
     branches:
-      - feature/nishioka/deploy # ここをデプロイしたいブランチに変更できます
+      - feature/nishioka/deploy # test中ここをデプロイしたいブランチに変更できます
 
 jobs:
   build-and-deploy:
