@@ -51,6 +51,9 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+      - name: Create necessary directories
+        run: mkdir -p backend/backend_env
+
       - name: Create SSL certificate file
         run: |
           echo "${{ secrets.SSL_CERTIFICATE }}" > backend/backend_env/DigiCertGlobalRootCA.crt.pem
