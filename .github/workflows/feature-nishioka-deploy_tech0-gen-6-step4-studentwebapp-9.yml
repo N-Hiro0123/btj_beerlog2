@@ -85,4 +85,3 @@ jobs:
           app-name: "tech0-gen-6-step4-studentwebapp-9"
           slot-name: "Production"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_037ABA160AD349CEB15F8938ABFCAAC4 }}
-          package: ./backend # デプロイするディレクトリ
