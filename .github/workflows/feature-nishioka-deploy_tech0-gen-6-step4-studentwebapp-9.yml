@@ -71,6 +71,9 @@ jobs:
       - name: Unzip artifact for deployment
         run: unzip release.zip
 
+      - name: Create necessary directories
+        run: mkdir -p backend_env
+
       - name: Create SSL certificate file
         run: |
           echo "${{ secrets.SSL_CERTIFICATE }}" > backend_env/DigiCertGlobalRootCA.crt.pem
