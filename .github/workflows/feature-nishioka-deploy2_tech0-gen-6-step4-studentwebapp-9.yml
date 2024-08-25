@@ -28,7 +28,7 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r backend/requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -67,3 +67,4 @@ jobs:
           app-name: 'tech0-gen-6-step4-studentwebapp-9'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C1F9CF61FBED4AB7B32D52AF4194290B }}
+          package: ./backend # デプロイするディレクトリ
