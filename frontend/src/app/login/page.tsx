@@ -21,7 +21,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const hashedPassword = await hashPassword(password); //  ハッシュ化されたパスワード
+      const hashedPassword = await hashPassword(password); // ハッシュ化されたパスワード
 
       const response = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + "/token", {
         method: "POST",
