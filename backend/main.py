@@ -17,6 +17,7 @@ from dotenv import load_dotenv
 # 環境変数のロード
 load_dotenv()  # デプロイ時に残しておいても問題ないらしい（あやしければ無効にする）
 FRONTEND_SERVER_URL = os.getenv("FRONTEND_SERVER_URL")
+FRONTEND_SERVER_URL2 = os.getenv("FRONTEND_SERVER_URL2")
 
 app = FastAPI()
 
@@ -28,6 +29,7 @@ app.include_router(purchase_router)  # 購入関係
 origins = [
     "http://localhost:3000",
     FRONTEND_SERVER_URL,
+    FRONTEND_SERVER_URL2,
 ]
 
 app.add_middleware(
