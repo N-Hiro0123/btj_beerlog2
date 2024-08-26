@@ -11,6 +11,13 @@ import base64
 from typing import List, Dict, Optional
 from datetime import datetime, date
 
+import os
+from dotenv import load_dotenv
+
+# 環境変数のロード
+load_dotenv()  # デプロイ時に残しておいても問題ないらしい（あやしければ無効にする）
+FRONTEND_SERVER_URL = os.getenv("FRONTEND_SERVER_URL")
+
 app = FastAPI()
 
 app.include_router(token_router)  # ログイン関係
@@ -20,6 +27,7 @@ app.include_router(purchase_router)  # 購入関係
 # CORS設定
 origins = [
     "http://localhost:3000",
+    FRONTEND_SERVER_URL,
 ]
 
 app.add_middleware(

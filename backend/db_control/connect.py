@@ -1,5 +1,6 @@
 # uname() error回避
 import platform
+
 print(platform.uname())
 # 意図は理解しきれていないが入れておく
 
@@ -10,7 +11,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
 # 環境変数のロード
-load_dotenv()
+load_dotenv()  # デプロイ時に残しておいても問題ないらしい（あやしければ無効にする）
 AZURE_MY_SERVER = os.getenv("AZURE_MY_SERVER")
 AZURE_MY_ADMIN = os.getenv("AZURE_MY_ADMIN")
 AZURE_MY_PASSWORD = os.getenv("AZURE_MY_PASSWORD")
@@ -30,6 +31,7 @@ engine = create_engine(connection_url, connect_args={"ssl": {"ca": ssl_cert_path
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
+
 # データベースセッションを取得するための関数
 def get_db():
     db = SessionLocal()
@@ -37,6 +39,7 @@ def get_db():
         yield db
     finally:
         db.close()
+
 
 # 接続テスト
 try:
