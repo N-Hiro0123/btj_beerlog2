@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - tech0-gen-6-step4-studentwe
 on:
   push:
     branches:
-      - feature/nishioka/deploy2
+      - main
   workflow_dispatch:
 
 jobs:
