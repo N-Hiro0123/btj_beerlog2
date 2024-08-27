@@ -381,12 +381,17 @@ export default function Home() {
 
       {/* Step3 の選択時に表示されるモーダルウィンドウ */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white rounded-lg shadow-lg p-8 w-3/4 max-h-full overflow-auto">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+          onClick={closeModal} // ポップアップの外側をクリックしたときにモーダルを閉じる
+        >
+          <div
+            className="bg-white rounded-lg shadow-lg p-8 w-3/4 max-h-full overflow-auto"
+            onClick={(e) => e.stopPropagation()} // ポップアップ内部のクリックイベントが外側に伝播しないようにする
+          >
             <h2 className="text-lg font-bold mb-4">{selectedSetName}</h2>
             <p className="text-sm text-gray-600 mb-4">{selectedSetDescription}</p>
             <div className="grid grid-cols-3 gap-4">
-              {" "}
               {/* 3列に分けて表示 */}
               {selectedSetDetails.map((item) => (
                 <div key={item.ec_brand_id} className="mb-4 flex items-center">
@@ -403,11 +408,13 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            <button onClick={closeModal} className="mt-4 bg-amber-600 text-white py-2 px-4 rounded hover:bg-amber-700">
+            <button
+              onClick={closeModal} // 「戻る」ボタンをクリックしたときにモーダルを閉じる
+              className="mt-4 bg-amber-600 text-white py-2 px-4 rounded hover:bg-amber-700"
+            >
               戻る
             </button>
           </div>
-          <div className="fixed inset-0 opacity-50 z-40" onClick={closeModal}></div>
         </div>
       )}
 
