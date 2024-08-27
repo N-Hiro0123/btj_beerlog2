@@ -78,7 +78,7 @@ export default function UserPage() {
   return (
     <div className="bg-gray-50 min-h-screen pt-20 mt-5">
       <Navbar /> {/* Navbarコンポーネントの表示 */}
-      <div className="p-4 lg:px-60">
+      <div className="py-4 px-32">
         {/* ログイン機能実装後に削除 */}
         {/* <div className="mb-4 p-4 border bg-red-200 border-red-500 rounded">
           <p className="text-red-500 font-bold mb-2">ログイン機能実装後に削除</p>
