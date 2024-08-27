@@ -1,10 +1,13 @@
 import axios from "axios";
-import { Purchaselog } from "../../types/purchase_types";
+import { PurchaselogPage } from "../../types/purchase_types";
 
-export const fetchPurchaselog = async (jwt: string): Promise<Purchaselog[]> => {
-  const response = await axios.get<Purchaselog[]>(process.env.NEXT_PUBLIC_API_ENDPOINT + "/purchaselog", {
+export const fetchPurchaselog = async (jwt: string, page: number = 1): Promise<PurchaselogPage> => {
+  const response = await axios.get<PurchaselogPage>(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/purchaselog`, {
     headers: {
       Authorization: `Bearer ${jwt}`,
+    },
+    params: {
+      page: page, // クエリパラメータとしてページ番号を指定
     },
   });
   return response.data;

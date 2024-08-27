@@ -117,3 +117,9 @@ export interface Purchaselog {
   survey_completion: boolean;
   details: PurchaseItem[];
 }
+
+export interface PurchaselogPage {
+  page: number;
+  total_page: number;
+  purchaselog: Purchaselog[];
+}

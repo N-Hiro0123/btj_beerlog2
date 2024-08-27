@@ -207,3 +207,9 @@ class UserNameResponse(BaseModel):
 # frontでは整数値が扱うので、返す値を丸めておく。
 class BrandPreferences(BaseModel):
     preferences: Dict[int, int]
+
+
+class PurchaselogPage(BaseModel):
+    page: int
+    total_page: int
+    purchaselog: List[Purchaselog]
